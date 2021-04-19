@@ -56,8 +56,8 @@
       </TextField>
       <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #6db5c7;">
         <items>
-          <Button layoutX="300.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="180.0" text="Button" />
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="180.0" text="Button" />
+          <Button layoutX="300.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="180.0" text="Aceptar" />
+            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="180.0" text="Cancelar" />
         </items>
       </ToolBar>
    </children>
