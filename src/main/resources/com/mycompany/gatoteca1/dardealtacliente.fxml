@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="399.0" style="-fx-background-color: #8bc89d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gatoteca1.DardealtaclienteController">
+   <children>
+      <Label style="-fx-background-color: WHITE; -fx-font-size: 20;" text="DAR DE ALTA CLIENTE">
+         <VBox.margin>
+            <Insets left="100.0" top="80.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></Label>
+      <TextField fx:id="nombre" promptText="Nombre">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="50.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextField>
+      <TextField fx:id="p_apellido" promptText="Primer apellido">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextField>
+      <TextField fx:id="s_apellido" promptText="Segundo apellido">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin></TextField>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #8bc89d;">
+        <items>
+            <Button fx:id="aceptar" mnemonicParsing="false" onMouseClicked="#darDeAltaCliente" text="Aceptar">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+            <Button fx:id="cancelar" contentDisplay="RIGHT" mnemonicParsing="false" onMouseClicked="#closeWindow" text="Cancelar">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+        </items>
+         <VBox.margin>
+            <Insets left="120.0" />
+         </VBox.margin>
+      </ToolBar>
+   </children>
+</VBox>

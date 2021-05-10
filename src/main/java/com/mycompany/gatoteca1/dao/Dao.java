@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dao;
+package com.mycompany.gatoteca1.dao;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dao;
+package com.mycompany.gatoteca1.dao;
 
-import com.modelos.Acogida;
+import com.mycompany.gatoteca1.App;
+import com.mycompany.gatoteca1.modelos.Acogida;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,9 +31,9 @@ public class DAOAcogida implements Dao<Acogida> {
     public void conectar() throws ClassNotFoundException, SQLException, IOException {
 
         Properties configuration = new Properties();
-        //Ayuda Nayra no se hacer que funcione asi:
-        //configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
-        configuration.load(new FileInputStream(new File("C:\\Users\\Irasema\\Documents\\NetBeansProjects\\Gatoteca1\\src\\main\\resources\\com\\mycompany\\gatoteca1\\connectionDB.properties")));
+        
+        configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
+        // configuration.load(new FileInputStream(new File("C:\\Users\\Irasema\\Documents\\NetBeansProjects\\Gatoteca1\\src\\main\\resources\\com\\mycompany\\gatoteca1\\connectionDB.properties")));
         String host = configuration.getProperty("host");
         String port = configuration.getProperty("port");
         String name = configuration.getProperty("name");

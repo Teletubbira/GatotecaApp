@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gatoteca1.GatotecaController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Gato">
             <items>
-              <MenuItem mnemonicParsing="false" text="Dar de alta" />
+              <MenuItem fx:id="darAltaGato" mnemonicParsing="false" onAction="#abrirDarAltaGato" text="Dar de alta" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Modificar" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Consultar" />
+                  <MenuItem fx:id="Consultar" mnemonicParsing="false" onAction="#abrirBuscarGato" text="Consultar" />
                   <MenuItem mnemonicParsing="false" text="Ver todos" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Dar de baja" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Persona">
+          <Menu mnemonicParsing="false" text="Cliente">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Dar de alta" />
+                  <MenuItem fx:id="darAltaCliente" mnemonicParsing="false" onAction="#abrirDarAltaCliente" text="Dar de alta" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Modificar" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Ver todos" />
-                  <MenuItem mnemonicParsing="false" text="Consultar" />
+                  <MenuItem fx:id="consultarCliente" mnemonicParsing="false" onAction="#abrirConsultarCliente" text="Consultar" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Dar de baja" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Adopcion">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Adoptar :)" />
+                  <MenuItem fx:id="adoptar" mnemonicParsing="false" onAction="#abrirAdoptar" text="Adoptar :)" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Ver adopciones" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Desadoptar :(" />
+                  <MenuItem fx:id="desadoptar" mnemonicParsing="false" onAction="#abrirDesadoptar" text="Desadoptar :(" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
+   <center>
+      <ImageView fitHeight="345.0" fitWidth="645.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../../images/logo.gif" />
+         </image>
+      </ImageView>
+   </center>
 </BorderPane>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="399.0" style="-fx-background-color: #6db5c7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gatoteca1.BuscargatitoController">
+   <children>
+      <Label alignment="CENTER" prefHeight="21.0" prefWidth="402.0" style="-fx-background-color: white;" text="BUSCAR GATITO">
+         <font>
+            <Font name="Consolas Bold" size="28.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="70.0" />
+         </VBox.margin>
+      </Label>
+      <ImageView fitHeight="216.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
+         <image>
+            <Image url="@../../../images/gatobuscando.png" />
+         </image>
+         <VBox.margin>
+            <Insets bottom="50.0" left="100.0" top="50.0" />
+         </VBox.margin>
+      </ImageView>
+      <TextField fx:id="IDGato" minHeight="-Infinity" minWidth="-Infinity" promptText="ID del gatito">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="250.0" />
+         </VBox.margin>
+      </TextField>
+      <TextField fx:id="NombreDelGato" minHeight="-Infinity" minWidth="-Infinity" promptText="Nombre del gatito">
+         <VBox.margin>
+            <Insets bottom="20.0" left="10.0" right="250.0" />
+         </VBox.margin>
+      </TextField>
+      <TextField fx:id="NombreGatito" prefHeight="41.0" prefWidth="148.0" promptText="Nombre gatito">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextField>
+      <DatePicker fx:id="Fecha" prefHeight="51.0" prefWidth="380.0" promptText="Fecha de nacimiento">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </DatePicker>
+      <TextField fx:id="Raza" promptText="Raza">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </TextField>
+      <TextField fx:id="Sexo" promptText="Sexo">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </TextField>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #6db5c7;">
+        <items>
+          <Button fx:id="Aceptar" layoutX="300.0" mnemonicParsing="false" onMouseClicked="#buscargatito" prefHeight="31.0" prefWidth="180.0" text="Aceptar" />
+            <Button fx:id="Cancelar" mnemonicParsing="false" onMouseClicked="#closeWindow" prefHeight="31.0" prefWidth="180.0" text="Cancelar" />
+        </items>
+      </ToolBar>
+   </children>
+</VBox>

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.entities;
+package com.mycompany.gatoteca1.modelos;
 
-import java.util.Date;
+import java.sql.Date;
+
+
 
 /**
  *
@@ -13,13 +15,20 @@ import java.util.Date;
  */
 public class Gato {
     private int id;
-    private int raza;
+    private String raza;
     private String nombre;
     private String sexo;
     private Date fecha_nacimiento;
 
-    public Gato(int id, int raza, String nombre, String sexo, Date fecha_nacimiento) {
+    public Gato(int id, String raza, String nombre, String sexo, Date fecha_nacimiento) {
         this.id = id;
+        this.raza = raza;
+        this.nombre = nombre;
+        this.sexo = sexo;
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public Gato(String raza, String nombre, String sexo, Date fecha_nacimiento) {
         this.raza = raza;
         this.nombre = nombre;
         this.sexo = sexo;
@@ -37,11 +46,11 @@ public class Gato {
         this.id = id;
     }
 
-    public int getRaza() {
+    public String getRaza() {
         return raza;
     }
 
-    public void setRaza(int raza) {
+    public void setRaza(String raza) {
         this.raza = raza;
     }
 

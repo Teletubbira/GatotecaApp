@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dao;
+package com.mycompany.gatoteca1.dao;
 
-import com.modelos.Gato;
+import com.mycompany.gatoteca1.App;
+import com.mycompany.gatoteca1.modelos.Gato;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -31,9 +32,8 @@ public class DAOGato implements Dao<Gato> {
 
         Properties configuration = new Properties();
 
-        //Ayuda Nayra no se hacer que funcione asi:
-        //configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
-        configuration.load(new FileInputStream(new File("C:\\Users\\Irasema\\Documents\\NetBeansProjects\\Gatoteca1\\src\\main\\resources\\com\\mycompany\\gatoteca1\\connectionDB.properties")));
+
+       configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
         String host = configuration.getProperty("host");
         String port = configuration.getProperty("port");
         String name = configuration.getProperty("name");
@@ -41,7 +41,6 @@ public class DAOGato implements Dao<Gato> {
         String password = configuration.getProperty("password");
 
         //System.out.println("Las properties son: " + host + port);
-
         conexion = DriverManager.getConnection("jdbc:mariadb://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",
                 username, password);
     }
@@ -57,19 +56,38 @@ public class DAOGato implements Dao<Gato> {
     @Override
     public Gato get(int id) throws SQLException {
         // TODO Auto-generated method stub
-        Gato gato = new Gato();
+        Gato gato = null; //Inicializado a null
         String sql = "SELECT * FROM gato where idgato = " + id;
 
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         ResultSet resultado = sentencia.executeQuery();
-        resultado.next();
 
-        gato.setId(resultado.getInt(1));
-        gato.setRaza(resultado.getInt(2));
-        gato.setNombre(resultado.getString(3));
-        gato.setSexo(resultado.getString(4));
-        gato.setFecha_nacimiento(resultado.getDate(5));
+        if (resultado.next()) { //En caso de que exista el gato, le doy valores
+            gato = new Gato();
+            gato.setId(resultado.getInt(1));
+            gato.setRaza(resultado.getString(2));
+            gato.setNombre(resultado.getString(3));
+            gato.setSexo(resultado.getString(4));
+            gato.setFecha_nacimiento(resultado.getDate(5));
+        }
+        return gato;
+    }
+     public Gato buscarPorNombre(String nombre) throws SQLException {
+        // TODO Auto-generated method stub
+        Gato gato = null; //Inicializado a null
+        String sql = "SELECT * FROM gato where nombre = " + nombre;
 
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        ResultSet resultado = sentencia.executeQuery();
+
+        if (resultado.next()) { //En caso de que exista el gato, le doy valores
+            gato = new Gato();
+            gato.setId(resultado.getInt(1));
+            gato.setRaza(resultado.getString(2));
+            gato.setNombre(resultado.getString(3));
+            gato.setSexo(resultado.getString(4));
+            gato.setFecha_nacimiento(resultado.getDate(5));
+        }
         return gato;
     }
 
@@ -79,7 +97,7 @@ public class DAOGato implements Dao<Gato> {
         String sql = "DELETE FROM gato WHERE idGato = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, id);
-                try {
+        try {
             sentencia.executeUpdate();
         } catch (Exception e) {
             resultado = false;
@@ -90,15 +108,15 @@ public class DAOGato implements Dao<Gato> {
     @Override
     public boolean save(Gato gato) throws SQLException {
         boolean resultado = true;
-        String sql = "INSERT INTO gato (id_raza, nombre, sexo, fecha_nacimiento) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO gato (raza, nombre, sexo, fecha_nacimiento) VALUES(?,?,?,?)";
 
         PreparedStatement sentencia = conexion.prepareStatement(sql);
-        sentencia.setInt(1, gato.getRaza());
+        sentencia.setString(1, gato.getRaza());
         sentencia.setString(2, gato.getNombre());
         sentencia.setString(3, gato.getSexo());
         sentencia.setDate(4, gato.getFecha_nacimiento());
 
-                try {
+        try {
             sentencia.executeUpdate();
         } catch (Exception e) {
             resultado = false;
@@ -109,15 +127,15 @@ public class DAOGato implements Dao<Gato> {
     @Override
     public boolean update(Gato gato) throws SQLException {
         boolean resultado = true;
-        String sql = "UPDATE gato SET (idraza, nombre, sexo, fecha_nacimiento) = (?,?,?,?) WHERE idGato = id";
+        String sql = "UPDATE gato SET (raza, nombre, sexo, fecha_nacimiento) = (?,?,?,?) WHERE idGato = id";
 
         PreparedStatement sentencia = conexion.prepareStatement(sql);
-        sentencia.setInt(1, gato.getRaza());
+        sentencia.setString(1, gato.getRaza());
         sentencia.setString(2, gato.getNombre());
         sentencia.setString(3, gato.getSexo());
         sentencia.setDate(4, gato.getFecha_nacimiento());
 
-                try {
+        try {
             sentencia.executeUpdate();
         } catch (Exception e) {
             resultado = false;
@@ -135,7 +153,7 @@ public class DAOGato implements Dao<Gato> {
         while (resultado.next()) {
             Gato gato = new Gato();
             gato.setId(resultado.getInt(1));
-            gato.setRaza(resultado.getInt(2));
+            gato.setRaza(resultado.getString(2));
             gato.setNombre(resultado.getString(3));
             gato.setSexo(resultado.getString(4));
             gato.setFecha_nacimiento(resultado.getDate(5));
@@ -144,16 +162,17 @@ public class DAOGato implements Dao<Gato> {
 
         return gatos;
     }
+
     public List<Gato> getAdoptables() throws SQLException {
         List<Gato> gatos = new ArrayList<>();
         String sql = "SELECT * FROM gato WHERE idGato NOT IN(SELECT IDGATO FROM ACOGIDA)";
-        
+
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         ResultSet resultado = sentencia.executeQuery();
         while (resultado.next()) {
             Gato gato = new Gato();
             gato.setId(resultado.getInt(1));
-            gato.setRaza(resultado.getInt(2));
+            gato.setRaza(resultado.getString(2));
             gato.setNombre(resultado.getString(3));
             gato.setSexo(resultado.getString(4));
             gato.setFecha_nacimiento(resultado.getDate(5));
@@ -169,9 +188,9 @@ public class DAOGato implements Dao<Gato> {
         String str = "2015-03-31";
         Date date = Date.valueOf(str);
 
-        Gato gato = new Gato(2, "Misifu", "F", date);
-        Gato gato2 = new Gato(1, "Elliot", "M", date);
-        Gato gato3 = new Gato(3, "Peque", "M", date);
+        Gato gato = new Gato("Persa", "Misifu", "F", date);
+        Gato gato2 = new Gato("Siames", "Elliot", "M", date);
+        Gato gato3 = new Gato("Comun", "Peque", "M", date);
         DAOgato.save(gato);
         DAOgato.save(gato2);
         DAOgato.save(gato3);
@@ -181,8 +200,6 @@ public class DAOGato implements Dao<Gato> {
         DAOgato.delete(1);
 
         System.out.println(DAOgato.getAll());
-        
-        
 
     }
 }

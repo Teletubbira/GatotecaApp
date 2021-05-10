@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="399.0" style="-fx-background-color: #f0cca3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gatoteca1.AdoptarController">
+   <children>
+      <Label alignment="CENTER" prefHeight="21.0" prefWidth="402.0" style="-fx-background-color: white;" text="ADOPTAR GATITO">
+         <font>
+            <Font name="Consolas Bold" size="28.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="70.0" />
+         </VBox.margin>
+      </Label>
+      <ImageView fitHeight="158.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
+         <image>
+            <Image url="@../../../images/photo_2021-05-09_17-05-13.jpg" />
+         </image>
+         <VBox.margin>
+            <Insets bottom="50.0" left="125.0" top="100.0" />
+         </VBox.margin>
+      </ImageView>
+      <TextField fx:id="idCliente" promptText="Id Cliente">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextField>
+      <TextField fx:id="idGato" promptText="Id Gato">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </TextField>
+      <DatePicker fx:id="fechaAdopcion" prefHeight="51.0" prefWidth="380.0" promptText="Fecha de adopcion">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </DatePicker>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: f0cca3;">
+        <items>
+          <Button fx:id="aceptar" layoutX="300.0" mnemonicParsing="false" onMouseClicked="#darDeAltaAdopcion" prefHeight="31.0" prefWidth="180.0" text="Aceptar" />
+            <Button fx:id="cancelar" mnemonicParsing="false" onMouseClicked="#closeWindow" prefHeight="31.0" prefWidth="180.0" text="Cancelar" />
+        </items>
+      </ToolBar>
+   </children>
+</VBox>
