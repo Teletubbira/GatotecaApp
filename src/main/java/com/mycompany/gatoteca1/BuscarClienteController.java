@@ -7,13 +7,17 @@ package com.mycompany.gatoteca1;
 
 import com.mycompany.gatoteca1.dao.DAOCliente;
 import com.mycompany.gatoteca1.modelos.Cliente;
+import com.mycompany.gatoteca1.modelos.Gato;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -37,18 +41,20 @@ public class BuscarClienteController implements Initializable {
     private TextField PrimerApellido;
     @FXML
     private TextField SegundoApellido;
+
     @FXML
-    private TextField GatosAdoptados;
+    private ListView<Gato> ListaGatitos;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         NombreCliente.setEditable(false);
         PrimerApellido.setEditable(false);
         SegundoApellido.setEditable(false);
-        GatosAdoptados.setEditable(false);
 
     }
 
@@ -59,16 +65,18 @@ public class BuscarClienteController implements Initializable {
     }
 
     @FXML
-    private void buscarCliente(MouseEvent event) throws SQLException, ClassNotFoundException, IOException{
-       
+    private void buscarCliente(MouseEvent event) throws SQLException, ClassNotFoundException, IOException {
+
         DAOCliente dcliente = new DAOCliente();
         int id = Integer.parseInt(IDCliente.getText());
         Cliente cliente = dcliente.get(id);
-      
 
-            NombreCliente.setText(cliente.getNombre());
-            PrimerApellido.setText(cliente.getApellido_p());
-            SegundoApellido.setText(cliente.getApellido_s());
+        NombreCliente.setText(cliente.getNombre());
+        PrimerApellido.setText(cliente.getApellido_p());
+        SegundoApellido.setText(cliente.getApellido_s());
+        
+        List<Gato> gatitos = dcliente.getGatitosAdoptados(id);
+        ListaGatitos.getItems().setAll(FXCollections.observableList(gatitos));
     }
 
 }

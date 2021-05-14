@@ -28,6 +28,12 @@ public class DAOGato implements Dao<Gato> {
 
     private Connection conexion;
 
+    /**
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public void conectar() throws ClassNotFoundException, SQLException, IOException {
 
         Properties configuration = new Properties();
@@ -45,14 +51,30 @@ public class DAOGato implements Dao<Gato> {
                 username, password);
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     public void desconectar() throws SQLException {
         conexion.close();
     }
 
+    /**
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public DAOGato() throws ClassNotFoundException, SQLException, IOException {
         conectar();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Gato get(int id) throws SQLException {
         // TODO Auto-generated method stub
@@ -72,13 +94,22 @@ public class DAOGato implements Dao<Gato> {
         }
         return gato;
     }
-     public Gato buscarPorNombre(String nombre) throws SQLException {
+
+    /**
+     *
+     * @param nombre
+     * @return
+     * @throws SQLException
+     */
+    public Gato buscarPorNombre(String nombre) throws SQLException {
         // TODO Auto-generated method stub
         Gato gato = null; //Inicializado a null
-        String sql = "SELECT * FROM gato where nombre = " + nombre;
+        String sql = "SELECT * FROM gato where nombre = ?";
 
         PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, nombre);
         ResultSet resultado = sentencia.executeQuery();
+        
 
         if (resultado.next()) { //En caso de que exista el gato, le doy valores
             gato = new Gato();
@@ -91,6 +122,12 @@ public class DAOGato implements Dao<Gato> {
         return gato;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean delete(int id) throws SQLException {
         boolean resultado = true;
@@ -105,6 +142,12 @@ public class DAOGato implements Dao<Gato> {
         return resultado;
     }
 
+    /**
+     *
+     * @param gato
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean save(Gato gato) throws SQLException {
         boolean resultado = true;
@@ -124,6 +167,12 @@ public class DAOGato implements Dao<Gato> {
         return resultado;
     }
 
+    /**
+     *
+     * @param gato
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean update(Gato gato) throws SQLException {
         boolean resultado = true;
@@ -143,6 +192,11 @@ public class DAOGato implements Dao<Gato> {
         return resultado;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Gato> getAll() throws SQLException {
         List<Gato> gatos = new ArrayList<>();
@@ -163,6 +217,11 @@ public class DAOGato implements Dao<Gato> {
         return gatos;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Gato> getAdoptables() throws SQLException {
         List<Gato> gatos = new ArrayList<>();
         String sql = "SELECT * FROM gato WHERE idGato NOT IN(SELECT IDGATO FROM ACOGIDA)";
@@ -182,6 +241,13 @@ public class DAOGato implements Dao<Gato> {
         return gatos;
     }
 
+    /**
+     *
+     * @param args
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
         DAOGato DAOgato = new DAOGato();
         // Gato gato = DAOgato.get(1);

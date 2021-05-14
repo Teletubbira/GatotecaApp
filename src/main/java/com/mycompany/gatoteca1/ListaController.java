@@ -5,30 +5,27 @@
  */
 package com.mycompany.gatoteca1;
 
+import com.mycompany.gatoteca1.dao.DAOGato;
+import com.mycompany.gatoteca1.modelos.Gato;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Irasema
  */
-public class DesadoptarController implements Initializable {
+public class ListaController implements Initializable {
 
     @FXML
-    private TextField idCliente;
-    @FXML
-    private TextField idGato;
-    @FXML
-    private Button aceptar;
-    @FXML
-    private Button cancelar;
+    private ListView<Gato> list;
+    
 
     /**
      * Initializes the controller class.
@@ -37,18 +34,22 @@ public class DesadoptarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try{
+        DAOGato dgato = new DAOGato();
+        List<Gato> gatitos = dgato.getAll();
+        list.getItems().setAll(FXCollections.observableList(gatitos));
+
+        }
+        catch(Exception e){
+            
+        }
+        
+        
         // TODO
-    }
+    }    
 
     @FXML
-    private void darDeAltaAdopcion(MouseEvent event) {
+    private void mostrarGato(MouseEvent event) {
     }
-
-    @FXML
-    private void closeWindow(MouseEvent event) {
-        Stage stage = (Stage) cancelar.getScene().getWindow();
-
-        stage.close();
-    }
-
+    
 }

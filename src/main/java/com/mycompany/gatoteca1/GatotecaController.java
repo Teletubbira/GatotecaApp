@@ -35,9 +35,13 @@ public class GatotecaController implements Initializable {
     private MenuItem adoptar;
     @FXML
     private MenuItem desadoptar;
+    @FXML
+    private MenuItem verTodos;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -108,8 +112,20 @@ public class GatotecaController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Desadoptar gatito");
         Scene scene = new Scene(fxmlLoader.load(), 399, 689);
-        stage.setScene(scene);
+        stage.setScene(scene);    
         stage.show();
+    }
+
+    @FXML
+    private void abrirVerTodos(ActionEvent event) throws IOException{
+        String fxml = "lista";
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Ver todos los gatitos");
+        Scene scene = new Scene(fxmlLoader.load(), 399, 689);
+        stage.setScene(scene);    
+        stage.show();
+        
     }
 
 }

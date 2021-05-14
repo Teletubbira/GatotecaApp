@@ -28,10 +28,16 @@ public class DAOAcogida implements Dao<Acogida> {
 
     private Connection conexion;
 
+    /**
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public void conectar() throws ClassNotFoundException, SQLException, IOException {
 
         Properties configuration = new Properties();
-        
+
         configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
         // configuration.load(new FileInputStream(new File("C:\\Users\\Irasema\\Documents\\NetBeansProjects\\Gatoteca1\\src\\main\\resources\\com\\mycompany\\gatoteca1\\connectionDB.properties")));
         String host = configuration.getProperty("host");
@@ -41,19 +47,34 @@ public class DAOAcogida implements Dao<Acogida> {
         String password = configuration.getProperty("password");
 
         //System.out.println("Las properties son: " + host + port);
-
         conexion = DriverManager.getConnection("jdbc:mariadb://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",
                 username, password);
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     public void desconectar() throws SQLException {
         conexion.close();
     }
 
+    /**
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public DAOAcogida() throws ClassNotFoundException, SQLException, IOException {
         conectar();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Acogida get(int id) throws SQLException {
         // TODO Auto-generated method stub
@@ -71,13 +92,19 @@ public class DAOAcogida implements Dao<Acogida> {
         return acogida;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean delete(int id) throws SQLException {
-         boolean resultado = true;
+        boolean resultado = true;
         String sql = "DELETE FROM acogida WHERE idAcogida = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, id);
-      try {
+        try {
             sentencia.executeUpdate();
         } catch (Exception e) {
             resultado = false;
@@ -85,6 +112,12 @@ public class DAOAcogida implements Dao<Acogida> {
         return resultado;
     }
 
+    /**
+     *
+     * @param acogida
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean save(Acogida acogida) throws SQLException {
         boolean resultado = true;
@@ -102,6 +135,12 @@ public class DAOAcogida implements Dao<Acogida> {
         return resultado;
     }
 
+    /**
+     *
+     * @param acogida
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean update(Acogida acogida) throws SQLException {
         String sql = "UPDATE acogida SET (idCliente, idGato, fecha) = (?,?,?) WHERE idAcogida = id";
@@ -119,6 +158,11 @@ public class DAOAcogida implements Dao<Acogida> {
         return resultado;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Acogida> getAll() throws SQLException {
         List<Acogida> acogidas = new ArrayList<>();
@@ -138,12 +182,41 @@ public class DAOAcogida implements Dao<Acogida> {
         return acogidas;
     }
 
+    /**
+     *
+     * @param idGato
+     * @return
+     * @throws SQLException
+     */
+    public boolean validarAdopcion(int idGato) throws SQLException {
+        boolean resultado = true;
+        String sql = "SELECT IDGATO FROM ACOGIDA WHERE IDGATO = ?";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setInt(1, idGato);
+        ResultSet result = sentencia.executeQuery();
+
+        if (result.next()) {
+            resultado = false;
+        } else {
+            resultado = true;
+        }
+
+        return resultado;
+    }
+
+    /**
+     *
+     * @param args
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
         DAOAcogida dacogida = new DAOAcogida();
-          String str = "2015-03-31";
+        String str = "2015-03-31";
         Date date = Date.valueOf(str);
 
-        Acogida acogida = new Acogida(1, 2, date );
+        Acogida acogida = new Acogida(1, 2, date);
         dacogida.save(acogida);
 
     }

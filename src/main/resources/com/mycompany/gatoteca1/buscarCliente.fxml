@@ -54,14 +54,14 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </TextField>
-      <TextField fx:id="GatosAdoptados" promptText="Gatitos adoptados">
+      <ListView fx:id="ListaGatitos" prefHeight="200.0" prefWidth="200.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
-      </TextField>
+      </ListView>
       <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #6db5c7;">
         <items>
           <Button fx:id="Aceptar" layoutX="300.0" mnemonicParsing="false" onMouseClicked="#buscarCliente" prefHeight="31.0" prefWidth="180.0" text="Aceptar" />

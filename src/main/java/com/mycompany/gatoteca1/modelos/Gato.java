@@ -7,83 +7,67 @@ package com.mycompany.gatoteca1.modelos;
 
 import java.sql.Date;
 
-
-
-/**
+/** Clase gato que hereda de la clase animal
  *
  * @author Irasema
  */
-public class Gato {
+public class Gato extends Animal {
+
     private int id;
-    private String raza;
-    private String nombre;
-    private String sexo;
-    private Date fecha_nacimiento;
 
+    /** Constructor con parametros, hereda atributos de la clase padre animal
+     *
+     * @param id
+     * @param raza
+     * @param nombre
+     * @param sexo
+     * @param fecha_nacimiento
+     */
     public Gato(int id, String raza, String nombre, String sexo, Date fecha_nacimiento) {
+        super(raza, nombre, sexo, fecha_nacimiento);
         this.id = id;
-        this.raza = raza;
-        this.nombre = nombre;
-        this.sexo = sexo;
-        this.fecha_nacimiento = fecha_nacimiento;
+
     }
 
+    /** Constructor con parametros, hereda atributos de la clase padre animal
+     *
+     * @param raza
+     * @param nombre
+     * @param sexo
+     * @param fecha_nacimiento
+     */
     public Gato(String raza, String nombre, String sexo, Date fecha_nacimiento) {
-        this.raza = raza;
-        this.nombre = nombre;
-        this.sexo = sexo;
-        this.fecha_nacimiento = fecha_nacimiento;
+        super(raza, nombre, sexo, fecha_nacimiento);
+
     }
 
+    /** Constructor vacio de la clase gato
+     *
+     */
     public Gato() {
     }
 
+    /** Metodo para obtener el id del gato
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /** Metodo para darle valor al id del gato
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getRaza() {
-        return raza;
-    }
-
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public Date getFecha_nacimiento() {
-        return fecha_nacimiento;
-    }
-
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
-    }
+    
+    
 
     @Override
     public String toString() {
-        return "Gato{" + "id=" + id + ", raza=" + raza + ", nombre=" + nombre + ", sexo=" + sexo + ", fecha_nacimiento=" + fecha_nacimiento + '}';
+        return "-" + getNombre() + " es de la raza " + getRaza() + ", es del sexo " + getSexo() + " y su fecha de nacimiento es " + getFecha_nacimiento();
     }
-    
-    
-    
-    
+
 }

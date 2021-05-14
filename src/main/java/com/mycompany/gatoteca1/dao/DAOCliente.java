@@ -5,9 +5,9 @@
  */
 package com.mycompany.gatoteca1.dao;
 
-
 import com.mycompany.gatoteca1.App;
 import com.mycompany.gatoteca1.modelos.Cliente;
+import com.mycompany.gatoteca1.modelos.Gato;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -28,11 +28,16 @@ public class DAOCliente implements Dao<Cliente> {
 
     private Connection conexion;
 
+    /**
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public void conectar() throws ClassNotFoundException, SQLException, IOException {
 
         Properties configuration = new Properties();
 
-        
         configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
         // configuration.load(new FileInputStream(new File("C:\\Users\\Irasema\\Documents\\NetBeansProjects\\Gatoteca1\\src\\main\\resources\\com\\mycompany\\gatoteca1\\connectionDB.properties")));
         String host = configuration.getProperty("host");
@@ -42,19 +47,34 @@ public class DAOCliente implements Dao<Cliente> {
         String password = configuration.getProperty("password");
 
 //        System.out.println("Las properties son: " + host + port);
-
         conexion = DriverManager.getConnection("jdbc:mariadb://" + host + ":" + port + "/" + name + "?serverTimezone=UTC",
                 username, password);
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     public void desconectar() throws SQLException {
         conexion.close();
     }
 
+    /**
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public DAOCliente() throws ClassNotFoundException, SQLException, IOException {
         conectar();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Cliente get(int id) throws SQLException {
         // TODO Auto-generated method stub
@@ -73,9 +93,15 @@ public class DAOCliente implements Dao<Cliente> {
         return cliente;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean delete(int id) throws SQLException {
-        boolean resultado = true;  
+        boolean resultado = true;
         String sql = "DELETE FROM cliente WHERE idCliente = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, id);
@@ -87,6 +113,12 @@ public class DAOCliente implements Dao<Cliente> {
         return resultado;
     }
 
+    /**
+     *
+     * @param cliente
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean save(Cliente cliente) throws SQLException {
         boolean resultado = true;
@@ -97,7 +129,7 @@ public class DAOCliente implements Dao<Cliente> {
         sentencia.setString(2, cliente.getApellido_p());
         sentencia.setString(3, cliente.getApellido_s());
 
-                try {
+        try {
             sentencia.executeUpdate();
         } catch (Exception e) {
             resultado = false;
@@ -105,6 +137,12 @@ public class DAOCliente implements Dao<Cliente> {
         return resultado;
     }
 
+    /**
+     *
+     * @param cliente
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean update(Cliente cliente) throws SQLException {
         boolean resultado = true;
@@ -115,7 +153,7 @@ public class DAOCliente implements Dao<Cliente> {
         sentencia.setString(2, cliente.getApellido_p());
         sentencia.setString(3, cliente.getApellido_s());
 
-                try {
+        try {
             sentencia.executeUpdate();
         } catch (Exception e) {
             resultado = false;
@@ -123,6 +161,11 @@ public class DAOCliente implements Dao<Cliente> {
         return resultado;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Cliente> getAll() throws SQLException {
         List<Cliente> clientes = new ArrayList<>();
@@ -142,6 +185,40 @@ public class DAOCliente implements Dao<Cliente> {
         return clientes;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public List<Gato> getGatitosAdoptados(int id) throws SQLException {
+        List<Gato> gatos = new ArrayList<>();
+        
+        String sql = "SELECT GATO.* from acogida inner join gato ON acogida.idGato = gato.idgato WHERE idCliente = ?";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setInt(1, id);
+        ResultSet resultado = sentencia.executeQuery();
+        
+       while (resultado.next()) {
+            Gato gato = new Gato();
+            gato.setId(resultado.getInt(1));
+            gato.setRaza(resultado.getString(2));
+            gato.setNombre(resultado.getString(3));
+            gato.setSexo(resultado.getString(4));
+            gato.setFecha_nacimiento(resultado.getDate(5));
+            gatos.add(gato);
+        }
+        
+        return gatos;
+    }
+
+    /**
+     *
+     * @param args
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException
+     */
     public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
         DAOCliente dcliente = new DAOCliente();
         // Cliente gato = DAOgato.get(1);

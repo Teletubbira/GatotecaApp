@@ -47,6 +47,8 @@ public class BuscargatitoController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,25 +62,56 @@ public class BuscargatitoController implements Initializable {
     @FXML
     private void buscargatito(MouseEvent event) throws SQLException, ClassNotFoundException, IOException {
         DAOGato daogato = new DAOGato();
-        int id = Integer.parseInt(IDGato.getText());
-        Gato gato = daogato.get(id);
-        daogato.desconectar();
-        if (gato != null) { //Comprobamos si el gato existe en bbdd
+        
+        String nombre = NombreDelGato.getText();      // buscar por nombre
 
-            NombreGatito.setText(gato.getNombre());
-            Fecha.setValue(gato.getFecha_nacimiento().toLocalDate());
-            Raza.setText(gato.getRaza());
-            Sexo.setText(gato.getSexo());
-        } else {  //En caso de que no exista mostramos error
-            NombreGatito.setText("");
-            Fecha.setValue(null);
-            Raza.setText("");
-            Sexo.setText("");
-            Alert errorAlert = new Alert(AlertType.ERROR);
-            errorAlert.setHeaderText("No tenemos al gatito que buscas :(");
-            errorAlert.setContentText("Pero tenemos muchos otros :')");
-            errorAlert.showAndWait();
+        if (nombre.length() > 1 ) {  // si nombre es distinto de null
+            System.out.println("Buscando por nombre: " +nombre);
+            IDGato.setText("");
+            Gato gato = daogato.buscarPorNombre(nombre);
+            daogato.desconectar();
+            if (gato != null) { //Comprobamos si el gato existe en bbdd
+                IDGato.setText(String.valueOf(gato.getId()));
+                NombreGatito.setText(gato.getNombre());
+                Fecha.setValue(gato.getFecha_nacimiento().toLocalDate());
+                Raza.setText(gato.getRaza());
+                Sexo.setText(gato.getSexo());
+            } else {  //En caso de que no exista mostramos error
+                NombreGatito.setText("");
+                Fecha.setValue(null);
+                Raza.setText("");
+                Sexo.setText("");
+                Alert errorAlert = new Alert(AlertType.ERROR);
+                errorAlert.setHeaderText("No tenemos al gatito que buscas :(");
+                errorAlert.setContentText("Pero tenemos muchos otros :')");
+                errorAlert.showAndWait();
+            }
+
+        } else {
+            
+            int id = Integer.parseInt(IDGato.getText());  // buscar por ID
+            System.out.println("Buscando por id: " +id);
+            Gato gato = daogato.get(id);
+            daogato.desconectar();
+            if (gato != null) { //Comprobamos si el gato existe en bbdd
+
+                NombreGatito.setText(gato.getNombre());
+                Fecha.setValue(gato.getFecha_nacimiento().toLocalDate());
+                Raza.setText(gato.getRaza());
+                Sexo.setText(gato.getSexo());
+            } else {  //En caso de que no exista mostramos error
+                NombreGatito.setText("");
+                Fecha.setValue(null);
+                Raza.setText("");
+                Sexo.setText("");
+                Alert errorAlert = new Alert(AlertType.ERROR);
+                errorAlert.setHeaderText("No tenemos al gatito que buscas :(");
+                errorAlert.setContentText("Pero tenemos muchos otros :')");
+                errorAlert.showAndWait();
+            }
+
         }
+
     }
 
     @FXML

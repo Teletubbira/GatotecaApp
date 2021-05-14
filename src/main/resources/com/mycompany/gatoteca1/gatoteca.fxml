@@ -16,7 +16,7 @@
                   <MenuItem mnemonicParsing="false" text="Modificar" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="Consultar" mnemonicParsing="false" onAction="#abrirBuscarGato" text="Consultar" />
-                  <MenuItem mnemonicParsing="false" text="Ver todos" />
+                  <MenuItem fx:id="verTodos" mnemonicParsing="false" onAction="#abrirVerTodos" text="Ver todos" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Dar de baja" />
             </items>
