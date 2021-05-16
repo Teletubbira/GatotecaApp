@@ -200,6 +200,7 @@ public class DAOPatronaje implements Dao<Patronaje> {
      * Metodo para comprobar si un gato ha sido adoptado
      *
      * @param idGato variable que hace referencia al id del gato
+     * @param idCliente variable que hace referencia al id del cliente
      * @return devuelve true si el gato ha sido adoptado, false en caso
      * contrario
      * @throws SQLException

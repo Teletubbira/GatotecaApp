@@ -19,10 +19,10 @@ public abstract class Animal {
 
     /**
      *
-     * @param raza
-     * @param nombre
-     * @param sexo
-     * @param fecha_nacimiento
+     * @param raza variable que hace referencia a la raza del animal
+     * @param nombre variable que hace referencia al nombre del animal
+     * @param sexo variable que hace referencia al sexo el animal
+     * @param fecha_nacimiento variable que hace referencia a la fecha de nacimiento del animal
      */
     public Animal(String raza, String nombre, String sexo, Date fecha_nacimiento) {
         this.raza = raza;
@@ -39,7 +39,7 @@ public abstract class Animal {
 
     /** Metodo para obtener la raza
      *
-     * @return
+     * @return raza
      */
     public String getRaza() {
         return raza;
@@ -47,7 +47,7 @@ public abstract class Animal {
 
     /** Metodo para darle valor a raza
      *
-     * @param raza
+     * @param raza variable que hace referencia a la raza del animal
      */
     public void setRaza(String raza) {
         this.raza = raza;
@@ -55,7 +55,7 @@ public abstract class Animal {
 
     /** Metodo para obtener el nombre del animal
      *
-     * @return
+     * @return nombre
      */
     public String getNombre() {
         return nombre;
@@ -63,7 +63,7 @@ public abstract class Animal {
 
     /** Metodo para darle valor al nombre del animal
      *
-     * @param nombre
+     * @param nombre variable que hace referencia al nombre del animal
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -71,7 +71,7 @@ public abstract class Animal {
 
     /** Metodo para obtener el sexo del animal
      *
-     * @return
+     * @return sexo
      */
     public String getSexo() {
         return sexo;
@@ -79,7 +79,7 @@ public abstract class Animal {
 
     /** Metodo para darle valor al sexo del animal
      *
-     * @param sexo
+     * @param sexo variable que hace referencia al sexo del animal
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
@@ -87,7 +87,7 @@ public abstract class Animal {
 
     /** Metodo para obtener la fecha de nacimiento del animal
      *
-     * @return
+     * @return fecha de nacimiento
      */
     public Date getFecha_nacimiento() {
         return fecha_nacimiento;
@@ -95,7 +95,7 @@ public abstract class Animal {
 
     /** Metodo para darle valor a la feca de nacimiento del animal
      *
-     * @param fecha_nacimiento
+     * @param fecha_nacimiento variable que hace referencia a la fecha de nacimiento del animal
      */
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;

@@ -20,10 +20,10 @@ public class Patronaje {
 
     /** Constructor con parametros de la clase patronaje
      *
-     * @param idPatronaje
-     * @param idCliente
-     * @param idGato
-     * @param fecha
+     * @param idPatronaje variable que hace referencia al id del patronaje
+     * @param idCliente variable que hace referencia al id del cliente
+     * @param idGato variable que hace referencia al id del gato
+     * @param fecha variable que hace referencia a la fecha de adopcion
      */
     public Patronaje(int idPatronaje, int idCliente, int idGato, Date fecha) {
         this.idPatronaje = idPatronaje;
@@ -34,9 +34,9 @@ public class Patronaje {
 
     /** Constructor con parametros sin la id de patronaje de la clase patronaje
      *
-     * @param idCliente
-     * @param idGato
-     * @param fecha
+     * @param idCliente variable que hace referencia al id del cliente
+     * @param idGato variable que hace referencia al id del gato
+     * @param fecha variable que hace referencia a la fecha de adopcion
      */
     public Patronaje(int idCliente, int idGato, Date fecha) {
         this.idCliente = idCliente;
@@ -52,7 +52,7 @@ public class Patronaje {
 
     /** Metodo para obtener el IdPatronaje
      *
-     * @return
+     * @return idPatronaje
      */
     public int getIdPatronaje() {
         return idPatronaje;
@@ -60,7 +60,7 @@ public class Patronaje {
 
     /** Metodo para darle valor a IdPatronaje
      *
-     * @param idPatronaje
+     * @param idPatronaje variable que hace referencia al id del patronaje
      */
     public void setIdPatronaje(int idPatronaje) {
         this.idPatronaje = idPatronaje;
@@ -68,7 +68,7 @@ public class Patronaje {
 
     /** Metodo para obtener IdCliente
      *
-     * @return
+     * @return idCliente
      */
     public int getIdCliente() {
         return idCliente;
@@ -76,7 +76,7 @@ public class Patronaje {
 
     /** Metodo para darle valor a IdCliente
      *
-     * @param idCliente
+     * @param idCliente variable que hace referencia al id del cliente
      */
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
@@ -84,7 +84,7 @@ public class Patronaje {
 
     /** Metodo para obtener el IdGato
      *
-     * @return
+     * @return idGato
      */
     public int getIdGato() {
         return idGato;
@@ -92,7 +92,7 @@ public class Patronaje {
 
     /** Metodo para darle valor a IdGato
      *
-     * @param idGato
+     * @param idGato variable que hace referencia al id del gato
      */
     public void setIdGato(int idGato) {
         this.idGato = idGato;
@@ -100,7 +100,7 @@ public class Patronaje {
 
     /** Metodo para obtener Fecha
      *
-     * @return
+     * @return fecha
      */
     public Date getFecha() {
         return fecha;
@@ -108,7 +108,7 @@ public class Patronaje {
 
     /** Metodo para darle valor a Fecha
      *
-     * @param fecha
+     * @param fecha variable que hace referencia a la fecha del patronaje
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;

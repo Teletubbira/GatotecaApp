@@ -17,10 +17,10 @@ public class Cliente {
 
     /** Constructor con parametros de la clase cliente
      *
-     * @param id
-     * @param nombre
-     * @param apellido_p
-     * @param apellido_s
+     * @param id variable que hace referencia al id del cliente
+     * @param nombre variable que hace referencia al nombre del cliente
+     * @param apellido_p variable que hace referencia al primer apellido del cliente
+     * @param apellido_s variable que hace referencia al segundo apellido del cliente
      */
     public Cliente(int id, String nombre, String apellido_p, String apellido_s) {
         this.id = id;
@@ -31,9 +31,9 @@ public class Cliente {
 
     /** Constructor con parametros sin el id del cliente
      *
-     * @param nombre
-     * @param apellido_p
-     * @param apellido_s
+     * @param nombre variable que hace referencia al nombre del cliente
+     * @param apellido_p variable que hace referencia al primer apellido del cliente
+     * @param apellido_s variable que hace referencia al segundo apellido del cliente
      */
     public Cliente(String nombre, String apellido_p, String apellido_s) {
         this.nombre = nombre;
@@ -49,7 +49,7 @@ public class Cliente {
 
     /** Metodo para obtener el id del cliente
      *
-     * @return
+     * @return id
      */
     public int getId() {
         return id;
@@ -57,7 +57,7 @@ public class Cliente {
 
     /** Metodo para darle valor al id del cliente
      *
-     * @param id
+     * @param id variable que hace referencia al id del cliente
      */
     public void setId(int id) {
         this.id = id;
@@ -65,7 +65,7 @@ public class Cliente {
 
     /** Metodo para conseguir el nombre del cliente
      *
-     * @return
+     * @return nombre
      */
     public String getNombre() {
         return nombre;
@@ -73,7 +73,7 @@ public class Cliente {
 
     /** Metodo para darle valor al nombre del cliente
      *
-     * @param nombre
+     * @param nombre variable que hace referencia al nombre del cliente
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -81,7 +81,7 @@ public class Cliente {
 
     /** Metodo para obtener el primer apellido del cliente
      *
-     * @return
+     * @return primer apellido
      */
     public String getApellido_p() {
         return apellido_p;
@@ -89,7 +89,7 @@ public class Cliente {
 
     /** Metodo para darle valor al primer apellido del cliente
      *
-     * @param apellido_p
+     * @param apellido_p variable que hace referencia al primer apellido del cliente
      */
     public void setApellido_p(String apellido_p) {
         this.apellido_p = apellido_p;
@@ -97,7 +97,7 @@ public class Cliente {
 
     /** Metodo para obtener el segundo apellido del cliente
      *
-     * @return
+     * @return segundo apellido
      */
     public String getApellido_s() {
         return apellido_s;
@@ -105,7 +105,7 @@ public class Cliente {
 
     /** Metodo para darle valor al segundo apellido del cliente
      *
-     * @param apellido_s
+     * @param apellido_s variable que hace referencia al segundo apellido del cliente
      */
     public void setApellido_s(String apellido_s) {
         this.apellido_s = apellido_s;
