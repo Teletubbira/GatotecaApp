@@ -221,6 +221,13 @@ public class DAOPatronaje implements Dao<Patronaje> {
         return resultado;
     }
 
+    /**
+     * Metodo para buscar los gatos adoptados por el año introducido
+     *
+     * @param fecha variable que hace referencia al año
+     * @return devuelve el numero de adopciones ese año en formato entero
+     * @throws SQLException
+     */
     public int buscarAdopcionesPorAño(int fecha) throws SQLException {
         String sql = "CALL gatoteca.adopcionesPorDia(?, ?)";
         CallableStatement cstmt = conexion.prepareCall(sql);
