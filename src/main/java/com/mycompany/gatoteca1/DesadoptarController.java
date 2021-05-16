@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
+/** Controlador que gestiona la desadopcion de gatos
  * FXML Controller class
  *
  * @author Irasema
@@ -43,7 +43,9 @@ public class DesadoptarController implements Initializable {
     @FXML
     private void darDeAltaAdopcion(MouseEvent event) {
     }
-
+    /** Metodo que cierra la ventana actual
+     * 
+     */
     @FXML
     private void closeWindow(MouseEvent event) {
         Stage stage = (Stage) cancelar.getScene().getWindow();

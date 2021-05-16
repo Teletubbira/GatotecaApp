@@ -7,25 +7,33 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="399.0" style="-fx-background-color: #6db5c7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gatoteca1.DardealtagatoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="399.0" style="-fx-background-color: #6db5c7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gatoteca1.UpdateGatitoController">
    <children>
-      <Label alignment="CENTER" prefHeight="21.0" prefWidth="402.0" style="-fx-background-color: white;" text="DAR DE ALTA GATITO">
+      <Label alignment="CENTER" prefHeight="21.0" prefWidth="402.0" style="-fx-background-color: white;" text="MODIFICAR GATITO">
          <font>
             <Font name="Consolas Bold" size="28.0" />
          </font>
          <VBox.margin>
-            <Insets top="70.0" />
+            <Insets bottom="30.0" top="70.0" />
          </VBox.margin>
       </Label>
-      <ImageView fitHeight="158.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
-         <image>
-            <Image url="@../../../images/photo_2021-04-08_21-51-58.jpg" />
-         </image>
+      <TextField fx:id="IDGato" promptText="ID del gato">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
          <VBox.margin>
-            <Insets bottom="50.0" left="125.0" top="70.0" />
+            <Insets bottom="10.0" left="10.0" right="290.0" top="10.0" />
          </VBox.margin>
-      </ImageView>
-      <TextField fx:id="nombreGato" promptText="Nombre gatito">
+      </TextField>
+      <Button fx:id="buscarGato" mnemonicParsing="false" onMouseClicked="#buscarGato" text="Buscar gato">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </VBox.margin>
+      </Button>
+      <TextField fx:id="nombreGato" promptText="Nombre del gatito">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
@@ -33,19 +41,19 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </TextField>
-      <DatePicker fx:id="fechaNacimiento" prefHeight="51.0" prefWidth="380.0" promptText="Fecha de nacimiento">
+      <DatePicker fx:id="fecha" prefHeight="51.0" prefWidth="380.0" promptText="Fecha de nacimiento">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </DatePicker>
-      <ComboBox fx:id="raza" prefWidth="150.0" promptText="Raza">
+      <TextField fx:id="raza" promptText="Raza">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
-      </ComboBox>
+      </TextField>
       <TextField fx:id="sexo" promptText="Sexo">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -56,7 +64,7 @@
       </TextField>
       <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #6db5c7;">
         <items>
-          <Button fx:id="aceptar" layoutX="300.0" mnemonicParsing="false" onMouseClicked="#darDeAltaGatito" prefHeight="31.0" prefWidth="180.0" text="Aceptar" />
+          <Button fx:id="aceptar" layoutX="300.0" mnemonicParsing="false" onMouseClicked="#updateGato" prefHeight="31.0" prefWidth="180.0" text="Aceptar" />
             <Button fx:id="cancelar" mnemonicParsing="false" onMouseClicked="#closeWindow" prefHeight="31.0" prefWidth="180.0" text="Cancelar" />
         </items>
       </ToolBar>

@@ -13,12 +13,12 @@
             <items>
               <MenuItem fx:id="darAltaGato" mnemonicParsing="false" onAction="#abrirDarAltaGato" text="Dar de alta" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Modificar" />
+                  <MenuItem fx:id="update" mnemonicParsing="false" onAction="#abrirModificarGato" text="Modificar" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="Consultar" mnemonicParsing="false" onAction="#abrirBuscarGato" text="Consultar" />
                   <MenuItem fx:id="verTodos" mnemonicParsing="false" onAction="#abrirVerTodos" text="Ver todos" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Dar de baja" />
+                  <MenuItem fx:id="eliminarGato" mnemonicParsing="false" onAction="#abrirEliminarGato" text="Dar de baja" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Cliente">
@@ -33,15 +33,21 @@
                   <MenuItem mnemonicParsing="false" text="Dar de baja" />
                </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Adopcion">
+          <Menu mnemonicParsing="false" text="Patronaje">
             <items>
                   <MenuItem fx:id="adoptar" mnemonicParsing="false" onAction="#abrirAdoptar" text="Adoptar :)" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Ver adopciones" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="desadoptar" mnemonicParsing="false" onAction="#abrirDesadoptar" text="Desadoptar :(" />
+                  <MenuItem fx:id="desadoptar" mnemonicParsing="false" onAction="#abrirDesadoptar" text="Cancelar subscripcion" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="buscarPorAño" mnemonicParsing="false" onAction="#abrirBuscarPorAño" text="Buscar por año" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Other">
+               <items>
+                  <MenuItem fx:id="aboutUs" mnemonicParsing="false" onAction="#openAboutUs" text="About Us" />
+               </items></Menu>
         </menus>
       </MenuBar>
    </top>

@@ -16,11 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
+/** Controlador que gestiona el login del usuario
  * FXML Controller class
  *
  * @author Irasema
@@ -29,10 +30,11 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField user;
-    @FXML
-    private TextField pass;
+  
     @FXML
     private Button OK;
+    @FXML
+    private PasswordField password;
 
     /**
      * Initializes the controller class.
@@ -43,12 +45,14 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    /** Metodo que comprueba que los datos introducidos por el usuario son correctos, 
+     * si lo son, se abre la ventana gatoteca y se cierra la de login
+     */
     @FXML
     private void validar(MouseEvent event) throws SQLException, ClassNotFoundException, IOException {
         LoginValidate login = new LoginValidate();
         String username = user.getText();
-        String passw = pass.getText();
+        String passw = password.getText();
 
         if (login.validate(username, passw)) {
             Stage stage = (Stage) OK.getScene().getWindow();

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-/**
+/** Clase que se encarga de gestionar la entidad gato con la base de datos
  *
  * @author Irasema
  */
@@ -28,7 +28,7 @@ public class DAOGato implements Dao<Gato> {
 
     private Connection conexion;
 
-    /**
+    /** Metodo para conectar con la base de datos
      *
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -51,7 +51,7 @@ public class DAOGato implements Dao<Gato> {
                 username, password);
     }
 
-    /**
+    /** Metodo para desconectar de la base de datos
      *
      * @throws SQLException
      */
@@ -59,7 +59,7 @@ public class DAOGato implements Dao<Gato> {
         conexion.close();
     }
 
-    /**
+    /** Constructor de DAOGato
      *
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -69,10 +69,10 @@ public class DAOGato implements Dao<Gato> {
         conectar();
     }
 
-    /**
+    /** Metodo para obtener los datos de un gato mediante su ID
      *
-     * @param id
-     * @return
+     * @param id variable que hace referencia al id del gato
+     * @return devuelve el gato solicitado, null en caso de no encontrarlo
      * @throws SQLException
      */
     @Override
@@ -95,10 +95,10 @@ public class DAOGato implements Dao<Gato> {
         return gato;
     }
 
-    /**
+    /** Metodo para buscar a un gato por su nombre
      *
-     * @param nombre
-     * @return
+     * @param nombre variable que hace referencia al nombre del gato
+     * @return devuelve el gato solicitado, null en caso de no encontrarlo
      * @throws SQLException
      */
     public Gato buscarPorNombre(String nombre) throws SQLException {
@@ -122,10 +122,10 @@ public class DAOGato implements Dao<Gato> {
         return gato;
     }
 
-    /**
+    /** Metodo para eliminar un gato mediante su id
      *
-     * @param id
-     * @return
+     * @param id variable que hace referencia al id del gato
+     * @return devuelve true si se ha podido eliminar y false en el caso contrario
      * @throws SQLException
      */
     @Override
@@ -142,10 +142,10 @@ public class DAOGato implements Dao<Gato> {
         return resultado;
     }
 
-    /**
+    /** Metodo para guardar los datos de un gato(raza, nombre, sexo y fecha de nacimiento)
      *
-     * @param gato
-     * @return
+     * @param gato variable que hace referencia al objeto gato
+     * @return devuelve true si se ha podido guardar y false en el caso contrario
      * @throws SQLException
      */
     @Override
@@ -167,22 +167,23 @@ public class DAOGato implements Dao<Gato> {
         return resultado;
     }
 
-    /**
+    /** Metodo para modificar datos del gato
      *
-     * @param gato
-     * @return
+     * @param gato variable que hace referencia al objeto gato
+     * @return devuelve true si se ha podido modificar y false en el caso contrario
      * @throws SQLException
      */
     @Override
     public boolean update(Gato gato) throws SQLException {
         boolean resultado = true;
-        String sql = "UPDATE gato SET (raza, nombre, sexo, fecha_nacimiento) = (?,?,?,?) WHERE idGato = id";
+        String sql = "UPDATE gato SET raza = ?, nombre = ?, sexo = ?, fecha_nacimiento = ? WHERE idGato = ?";
 
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setString(1, gato.getRaza());
         sentencia.setString(2, gato.getNombre());
         sentencia.setString(3, gato.getSexo());
         sentencia.setDate(4, gato.getFecha_nacimiento());
+        sentencia.setInt(5, gato.getId());
 
         try {
             sentencia.executeUpdate();
@@ -192,9 +193,9 @@ public class DAOGato implements Dao<Gato> {
         return resultado;
     }
 
-    /**
+    /** Metodo para obtener la lista de gatos existentes en la base de datos
      *
-     * @return
+     * @return devuelve la lista de gatos
      * @throws SQLException
      */
     @Override
@@ -217,31 +218,7 @@ public class DAOGato implements Dao<Gato> {
         return gatos;
     }
 
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-    public List<Gato> getAdoptables() throws SQLException {
-        List<Gato> gatos = new ArrayList<>();
-        String sql = "SELECT * FROM gato WHERE idGato NOT IN(SELECT IDGATO FROM ACOGIDA)";
-
-        PreparedStatement sentencia = conexion.prepareStatement(sql);
-        ResultSet resultado = sentencia.executeQuery();
-        while (resultado.next()) {
-            Gato gato = new Gato();
-            gato.setId(resultado.getInt(1));
-            gato.setRaza(resultado.getString(2));
-            gato.setNombre(resultado.getString(3));
-            gato.setSexo(resultado.getString(4));
-            gato.setFecha_nacimiento(resultado.getDate(5));
-            gatos.add(gato);
-        }
-
-        return gatos;
-    }
-
-    /**
+    /** 
      *
      * @param args
      * @throws ClassNotFoundException
@@ -258,14 +235,18 @@ public class DAOGato implements Dao<Gato> {
         Gato gato2 = new Gato("Siames", "Elliot", "M", date);
         Gato gato3 = new Gato("Comun", "Peque", "M", date);
         DAOgato.save(gato);
-        DAOgato.save(gato2);
-        DAOgato.save(gato3);
+        //DAOgato.save(gato2);
+        //DAOgato.save(gato3);
+         System.out.println(DAOgato.getAll());
+        gato.setNombre("mamama");
+        DAOgato.update(gato);
+        
 
         System.out.println(DAOgato.getAll());
 
-        DAOgato.delete(1);
+        // DAOgato.delete(1);
 
-        System.out.println(DAOgato.getAll());
+        
 
     }
 }

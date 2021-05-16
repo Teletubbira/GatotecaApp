@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
+/** Controlador que da de alta clientes en la base de datos
  * FXML Controller class
  *
  * @author Irasema
@@ -46,7 +46,9 @@ public class DardealtaclienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    /** Metodo que guarda los datos introducidos por el usuario sobre el nuevo cliente
+     * 
+     */
     @FXML
     private void darDeAltaCliente(MouseEvent event) throws SQLException, ClassNotFoundException, IOException {
         DAOCliente dcliente = new DAOCliente();
@@ -65,8 +67,11 @@ public class DardealtaclienteController implements Initializable {
             errorAlert.setContentText("No se ha podido dar de alta");
             errorAlert.showAndWait();
         }
+        dcliente.desconectar();
     }
-
+    /** Metodo que cierra la ventana actual
+     * 
+     */
     @FXML
     private void closeWindow(MouseEvent event) {
         Stage stage = (Stage) cancelar.getScene().getWindow();

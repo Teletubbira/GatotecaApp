@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
+ * Clase que se encarga de gestionar la entidad cliente con la base de datos
  *
  * @author Irasema
  */
@@ -29,6 +30,7 @@ public class DAOCliente implements Dao<Cliente> {
     private Connection conexion;
 
     /**
+     * Metodo para conectar con la base de datos
      *
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -52,6 +54,7 @@ public class DAOCliente implements Dao<Cliente> {
     }
 
     /**
+     * Metodo para desconectar de la base de datos
      *
      * @throws SQLException
      */
@@ -60,6 +63,7 @@ public class DAOCliente implements Dao<Cliente> {
     }
 
     /**
+     * Constructor de DAOCliente
      *
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -70,33 +74,37 @@ public class DAOCliente implements Dao<Cliente> {
     }
 
     /**
+     * Metodo para buscar un cliente en la base de datos mediante su ID
      *
-     * @param id
-     * @return
+     * @param id variable que hace referencia al id del cliente
+     * @return devuelve el cliente solicitado, null en caso contrario
      * @throws SQLException
      */
     @Override
     public Cliente get(int id) throws SQLException {
         // TODO Auto-generated method stub
-        Cliente cliente = new Cliente();
+        Cliente cliente = null; // inicializado a null
         String sql = "SELECT * FROM cliente where idCliente = " + id;
 
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         ResultSet resultado = sentencia.executeQuery();
-        resultado.next();
 
-        cliente.setId(resultado.getInt(1));
-        cliente.setNombre(resultado.getString(2));
-        cliente.setApellido_p(resultado.getString(3));
-        cliente.setApellido_s(resultado.getString(4));
+        if (resultado.next()) {
+            cliente = new Cliente();
+            cliente.setId(resultado.getInt(1));
+            cliente.setNombre(resultado.getString(2));
+            cliente.setApellido_p(resultado.getString(3));
+            cliente.setApellido_s(resultado.getString(4));
+        }
 
         return cliente;
     }
 
     /**
+     * Metodo para eliminar un cliente mediante su ID
      *
-     * @param id
-     * @return
+     * @param id variable que hace referencia al id del cliente
+     * @return devuelve true si se ha podido eliminar el cliente, false en caso contrario
      * @throws SQLException
      */
     @Override
@@ -114,9 +122,10 @@ public class DAOCliente implements Dao<Cliente> {
     }
 
     /**
+     * Metodo para guardar los datos de un cliente (nombre y apellidos)
      *
-     * @param cliente
-     * @return
+     * @param cliente variable que hace refrencia al objeto cliente
+     * @return devuelve true si se han podido guardar los datos del cliente, false en caso contrario
      * @throws SQLException
      */
     @Override
@@ -138,9 +147,10 @@ public class DAOCliente implements Dao<Cliente> {
     }
 
     /**
+     * Metodo para modificar los datos de un cliente
      *
-     * @param cliente
-     * @return
+     * @param cliente variable que hace referencia al objeto cliente
+     * @return devuelve true si se han podido modificar los datos del cliente, false en caso contrario
      * @throws SQLException
      */
     @Override
@@ -162,8 +172,9 @@ public class DAOCliente implements Dao<Cliente> {
     }
 
     /**
+     * Metodo para ver una lista de todos los clientes
      *
-     * @return
+     * @return devuelve la lista de todos los clientes
      * @throws SQLException
      */
     @Override
@@ -186,20 +197,22 @@ public class DAOCliente implements Dao<Cliente> {
     }
 
     /**
+     * Metodo para ver una lista de los gatos adoptados por un cliente buscando
+     * por la ID del cliente
      *
-     * @param id
-     * @return
+     * @param id variable que hace referencia al id del cliente
+     * @return devuelve los gatos que han sido adoptados por ese cliente
      * @throws SQLException
      */
     public List<Gato> getGatitosAdoptados(int id) throws SQLException {
         List<Gato> gatos = new ArrayList<>();
-        
+
         String sql = "SELECT GATO.* from acogida inner join gato ON acogida.idGato = gato.idgato WHERE idCliente = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, id);
         ResultSet resultado = sentencia.executeQuery();
-        
-       while (resultado.next()) {
+
+        while (resultado.next()) {
             Gato gato = new Gato();
             gato.setId(resultado.getInt(1));
             gato.setRaza(resultado.getString(2));
@@ -208,7 +221,7 @@ public class DAOCliente implements Dao<Cliente> {
             gato.setFecha_nacimiento(resultado.getDate(5));
             gatos.add(gato);
         }
-        
+
         return gatos;
     }
 

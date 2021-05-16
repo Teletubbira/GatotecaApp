@@ -7,63 +7,63 @@ package com.mycompany.gatoteca1.modelos;
 
 import java.sql.Date;
 
-/** Clase acogida que nos dara los datos de la acogida de gato por clientes con su fecha
+/** Clase patronaje que nos dara los datos de la patronaje de gato por clientes con su fecha
  *
  * @author Irasema
  */
-public class Acogida {
+public class Patronaje {
 
-    private int idAcogida;
+    private int idPatronaje;
     private int idCliente;
     private int idGato;
     private Date fecha;
 
-    /** Constructor con parametros de la clase acogida
+    /** Constructor con parametros de la clase patronaje
      *
-     * @param idAcogida
+     * @param idPatronaje
      * @param idCliente
      * @param idGato
      * @param fecha
      */
-    public Acogida(int idAcogida, int idCliente, int idGato, Date fecha) {
-        this.idAcogida = idAcogida;
+    public Patronaje(int idPatronaje, int idCliente, int idGato, Date fecha) {
+        this.idPatronaje = idPatronaje;
         this.idCliente = idCliente;
         this.idGato = idGato;
         this.fecha = fecha;
     }
 
-    /** Constructor con parametros sin la id de acogida de la clase acogida
+    /** Constructor con parametros sin la id de patronaje de la clase patronaje
      *
      * @param idCliente
      * @param idGato
      * @param fecha
      */
-    public Acogida(int idCliente, int idGato, Date fecha) {
+    public Patronaje(int idCliente, int idGato, Date fecha) {
         this.idCliente = idCliente;
         this.idGato = idGato;
         this.fecha = fecha;
     }
 
-    /** Constructor sin parametros de la clase Acogida
+    /** Constructor sin parametros de la clase Patronaje
      *
      */
-    public Acogida() {
+    public Patronaje() {
     }
 
-    /** Metodo para obtener el IdAcogida
+    /** Metodo para obtener el IdPatronaje
      *
      * @return
      */
-    public int getIdAcogida() {
-        return idAcogida;
+    public int getIdPatronaje() {
+        return idPatronaje;
     }
 
-    /** Metodo para darle valor a IdAcogida
+    /** Metodo para darle valor a IdPatronaje
      *
-     * @param idAcogida
+     * @param idPatronaje
      */
-    public void setIdAcogida(int idAcogida) {
-        this.idAcogida = idAcogida;
+    public void setIdPatronaje(int idPatronaje) {
+        this.idPatronaje = idPatronaje;
     }
 
     /** Metodo para obtener IdCliente
@@ -116,7 +116,7 @@ public class Acogida {
 
     @Override
     public String toString() {
-        return "Acogida{" + "idAcogida=" + idAcogida + ", idCliente=" + idCliente + ", idGato=" + idGato + ", fecha=" + fecha + '}';
+        return "Patronaje{" + "idPatronaje=" + idPatronaje + ", idCliente=" + idCliente + ", idGato=" + idGato + ", fecha=" + fecha + '}';
     }
 
 }

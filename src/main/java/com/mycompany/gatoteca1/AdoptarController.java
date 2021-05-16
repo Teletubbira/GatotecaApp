@@ -5,8 +5,8 @@
  */
 package com.mycompany.gatoteca1;
 
-import com.mycompany.gatoteca1.dao.DAOAcogida;
-import com.mycompany.gatoteca1.modelos.Acogida;
+import com.mycompany.gatoteca1.dao.DAOPatronaje;
+import com.mycompany.gatoteca1.modelos.Patronaje;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
+/** Controlador encargado de gestionar las adopciones de gatos
  * FXML Controller class
  *
  * @author Irasema
@@ -40,6 +40,7 @@ public class AdoptarController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
@@ -50,15 +51,15 @@ public class AdoptarController implements Initializable {
 
     @FXML
     private void darDeAltaAdopcion(MouseEvent event) throws SQLException, ClassNotFoundException, IOException {
-        DAOAcogida dacogida = new DAOAcogida();
-        Acogida acogida = new Acogida();
+        DAOPatronaje dacogida = new DAOPatronaje();
+        Patronaje acogida = new Patronaje();
         int idC = Integer.parseInt(idCliente.getText());
         acogida.setIdCliente(idC);
         int idG = Integer.parseInt(idGato.getText());
         acogida.setIdGato(idG);
         acogida.setFecha(java.sql.Date.valueOf(fechaAdopcion.getValue()));
+        if (dacogida.validarAdopcion(idG, idC)) {
 
-        if (dacogida.validarAdopcion(idG)) {
             if (dacogida.save(acogida)) {
                 Alert errorAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 errorAlert.setContentText("Adopcion realizada");
@@ -69,13 +70,12 @@ public class AdoptarController implements Initializable {
                 errorAlert.showAndWait();
 
             }
-
         } else {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setContentText("El gato ya ha sido adoptado.");
+            errorAlert.setContentText("Este cliente ya esta adoptando a este gato");
             errorAlert.showAndWait();
         }
-
+        dacogida.desconectar();
     }
 
     @FXML

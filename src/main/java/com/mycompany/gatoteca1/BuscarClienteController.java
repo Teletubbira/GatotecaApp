@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
+/** Controlador para buscar clientes en la base de datos
  * FXML Controller class
  *
  * @author Irasema
@@ -45,7 +45,7 @@ public class BuscarClienteController implements Initializable {
     @FXML
     private ListView<Gato> ListaGatitos;
 
-    /**
+    /** Se inicializa la ventana sin poder editar los campos por el usuario
      * Initializes the controller class.
      * @param url
      * @param rb
@@ -57,25 +57,30 @@ public class BuscarClienteController implements Initializable {
         SegundoApellido.setEditable(false);
 
     }
-
+    /** Metodo que cierra la ventana actual
+     * 
+     */
     @FXML
     private void closeWindow(MouseEvent event) {
         Stage stage = (Stage) Cancelar.getScene().getWindow();
         stage.close();
     }
-
+    /** Metodo que muestra los datos del cliente a partid del id introducido
+     * 
+     */
     @FXML
     private void buscarCliente(MouseEvent event) throws SQLException, ClassNotFoundException, IOException {
 
         DAOCliente dcliente = new DAOCliente();
         int id = Integer.parseInt(IDCliente.getText());
         Cliente cliente = dcliente.get(id);
+        dcliente.desconectar();
 
         NombreCliente.setText(cliente.getNombre());
         PrimerApellido.setText(cliente.getApellido_p());
         SegundoApellido.setText(cliente.getApellido_s());
         
-        List<Gato> gatitos = dcliente.getGatitosAdoptados(id);
+        List<Gato> gatitos = dcliente.getGatitosAdoptados(id); // para ver los gatos que ese cliente haya adoptado
         ListaGatitos.getItems().setAll(FXCollections.observableList(gatitos));
     }
 

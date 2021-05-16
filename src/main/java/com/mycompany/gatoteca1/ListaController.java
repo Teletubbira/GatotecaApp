@@ -14,10 +14,9 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 
 /**
- * FXML Controller class
+ * Controlador que muestra la lista total de gatos FXML Controller class
  *
  * @author Irasema
  */
@@ -25,31 +24,26 @@ public class ListaController implements Initializable {
 
     @FXML
     private ListView<Gato> list;
-    
 
     /**
-     * Initializes the controller class.
+     * Metodo que inicializa la ventana con la lista de los gatos Initializes
+     * the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try{
-        DAOGato dgato = new DAOGato();
-        List<Gato> gatitos = dgato.getAll();
-        list.getItems().setAll(FXCollections.observableList(gatitos));
+        try {
+            DAOGato dgato = new DAOGato();
+            List<Gato> gatitos = dgato.getAll();
+            dgato.desconectar();
+            list.getItems().setAll(FXCollections.observableList(gatitos));
+
+        } catch (Exception e) {
 
         }
-        catch(Exception e){
-            
-        }
-        
-        
-        // TODO
-    }    
 
-    @FXML
-    private void mostrarGato(MouseEvent event) {
     }
-    
+
 }

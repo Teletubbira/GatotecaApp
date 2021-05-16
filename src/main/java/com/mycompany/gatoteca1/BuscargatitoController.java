@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
+/** Controlador para buscar gatos en la base de datos
  * FXML Controller class
  *
  * @author Irasema
@@ -45,7 +45,7 @@ public class BuscargatitoController implements Initializable {
     @FXML
     private TextField NombreDelGato;
 
-    /**
+    /** Metodo que inicializa la ventana sin que el usuario pueda modificar los campos
      * Initializes the controller class.
      * @param url
      * @param rb
@@ -58,7 +58,9 @@ public class BuscargatitoController implements Initializable {
         Raza.setEditable(false);
         Sexo.setEditable(false);
     }
-
+    /** Metodo que busca al gato por su nombre o por su id
+     * 
+     */
     @FXML
     private void buscargatito(MouseEvent event) throws SQLException, ClassNotFoundException, IOException {
         DAOGato daogato = new DAOGato();
@@ -113,7 +115,9 @@ public class BuscargatitoController implements Initializable {
         }
 
     }
-
+    /** Metodo que cierra la ventana actual
+     * 
+     */
     @FXML
     private void closeWindow(MouseEvent event) {
         Stage stage = (Stage) Cancelar.getScene().getWindow();

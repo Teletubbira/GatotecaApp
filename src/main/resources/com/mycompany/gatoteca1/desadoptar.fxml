@@ -9,7 +9,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="399.0" style="-fx-background-color: #f0cca3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gatoteca1.DesadoptarController">
    <children>
-      <Label alignment="CENTER" prefHeight="21.0" prefWidth="402.0" style="-fx-background-color: white;" text="DESADOPTAR GATITO">
+      <Label alignment="CENTER" prefHeight="21.0" prefWidth="402.0" style="-fx-background-color: white;" text="CANCELAR SUBSCRIPCION">
          <font>
             <Font name="Consolas Bold" size="28.0" />
          </font>

@@ -67,7 +67,7 @@ public class Gato extends Animal {
 
     @Override
     public String toString() {
-        return "-" + getNombre() + " es de la raza " + getRaza() + ", es del sexo " + getSexo() + " y su fecha de nacimiento es " + getFecha_nacimiento();
+        return "-" +getId() +": " + getNombre() + " es de la raza " + getRaza() + ", es del sexo " + getSexo() + " y su fecha de nacimiento es " + getFecha_nacimiento();
     }
 
 }

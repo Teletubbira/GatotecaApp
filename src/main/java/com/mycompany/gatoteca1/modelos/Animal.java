@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author Irasema
  */
-public class Animal {
+public abstract class Animal {
     private String raza;
     private String nombre;
     private String sexo;

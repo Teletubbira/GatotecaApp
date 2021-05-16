@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
+/** Clase que valida que los datos proporcionados en el login se encuentren en la base de datos
  *
  * @author Irasema
  */
@@ -24,7 +24,7 @@ public class LoginValidate {
 
     private Connection conexion;
 
-    /**
+    /** Metodo que conecta con la base de datos
      *
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -47,7 +47,7 @@ public class LoginValidate {
                 username, password);
     }
 
-    /**
+    /** Metodo que desconecta de la base de datos
      *
      * @throws SQLException
      */
@@ -55,7 +55,7 @@ public class LoginValidate {
         conexion.close();
     }
 
-    /**
+    /** Constructor de LoginValidate
      *
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -65,11 +65,11 @@ public class LoginValidate {
         conectar();
     }
 
-    /**
+    /** Metodo que comprueba si el usuario y contraseña introducidos se encuentran en la base de datos
      *
-     * @param user
-     * @param password
-     * @return
+     * @param user variable que hace referencia al nombre de usuario
+     * @param password variable que hace referencia a la contraseña del usuario
+     * @return devuelve true si los datos introducidos son validos y false en caso contrario
      * @throws ClassNotFoundException
      * @throws SQLException
      * @throws IOException
