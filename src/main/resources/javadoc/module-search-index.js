@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"com.mycompany.gatoteca1"}];updateSearchResults();
