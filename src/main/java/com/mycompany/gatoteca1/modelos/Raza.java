@@ -5,7 +5,7 @@
  */
 package com.mycompany.gatoteca1.modelos;
 
-/**
+/** Clase enumerada con las razas de los gatos
  *
  * @author Irasema
  */
