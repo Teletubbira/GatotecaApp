@@ -74,14 +74,16 @@ public class BuscarClienteController implements Initializable {
         DAOCliente dcliente = new DAOCliente();
         int id = Integer.parseInt(IDCliente.getText());
         Cliente cliente = dcliente.get(id);
-        dcliente.desconectar();
+        
 
         NombreCliente.setText(cliente.getNombre());
         PrimerApellido.setText(cliente.getApellido_p());
         SegundoApellido.setText(cliente.getApellido_s());
         
         List<Gato> gatitos = dcliente.getGatitosAdoptados(id); // para ver los gatos que ese cliente haya adoptado
+        dcliente.desconectar();
         ListaGatitos.getItems().setAll(FXCollections.observableList(gatitos));
+        
     }
 
 }

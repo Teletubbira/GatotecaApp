@@ -41,7 +41,6 @@ public class DAOCliente implements Dao<Cliente> {
         Properties configuration = new Properties();
 
         configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
-        // configuration.load(new FileInputStream(new File("C:\\Users\\Irasema\\Documents\\NetBeansProjects\\Gatoteca1\\src\\main\\resources\\com\\mycompany\\gatoteca1\\connectionDB.properties")));
         String host = configuration.getProperty("host");
         String port = configuration.getProperty("port");
         String name = configuration.getProperty("name");
@@ -207,7 +206,7 @@ public class DAOCliente implements Dao<Cliente> {
     public List<Gato> getGatitosAdoptados(int id) throws SQLException {
         List<Gato> gatos = new ArrayList<>();
 
-        String sql = "SELECT GATO.* from acogida inner join gato ON acogida.idGato = gato.idgato WHERE idCliente = ?";
+        String sql = "SELECT GATO.* from patronaje inner join gato ON patronaje.idGato = gato.idgato WHERE patronaje.idCliente = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, id);
         ResultSet resultado = sentencia.executeQuery();

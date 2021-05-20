@@ -43,7 +43,7 @@ public class DAOPatronaje implements Dao<Patronaje> {
         Properties configuration = new Properties();
 
         configuration.load(new FileInputStream(new File(App.class.getResource("connectionDB.properties").getPath())));
-        // configuration.load(new FileInputStream(new File("C:\\Users\\Irasema\\Documents\\NetBeansProjects\\Gatoteca1\\src\\main\\resources\\com\\mycompany\\gatoteca1\\connectionDB.properties")));
+        
         String host = configuration.getProperty("host");
         String port = configuration.getProperty("port");
         String name = configuration.getProperty("name");

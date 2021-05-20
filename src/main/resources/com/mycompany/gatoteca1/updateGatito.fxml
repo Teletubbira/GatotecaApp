@@ -46,14 +46,14 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </DatePicker>
-      <TextField fx:id="raza" promptText="Raza">
+      <ComboBox fx:id="raza" prefWidth="150.0" promptText="Raza">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
-      </TextField>
+      </ComboBox>
       <TextField fx:id="sexo" promptText="Sexo">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
